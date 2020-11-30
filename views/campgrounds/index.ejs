@@ -17,6 +17,9 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <h1>All Campgrounds</h1>
+        <div>
+            <a href="/capmgrounds/new">Add Campground</a>
+        </div>
         <ul>
             <% for (let campground of campgrounds) { %>
                 <li><a href="/campgrounds/<%= campground._id %>"><%= campground.title %></a></li>
