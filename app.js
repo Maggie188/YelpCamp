@@ -57,10 +57,10 @@ app.get('/', (req, res) => {
     res.render('home');
 })
 
-app.get('/campgrounds', async (req, res) => {
+app.get('/campgrounds', catchAsync(async (req, res) => {
     const campgrounds = await Campground.find({});
     res.render('campgrounds/index', { campgrounds });
-})
+}))
 
 app.get('/campgrounds/new', (req, res) => {
     res.render('campgrounds/new');
@@ -73,7 +73,7 @@ app.post('/campgrounds', validateCampground, catchAsync(async (req, res) => {
 }))
 
 app.get('/campgrounds/:id', catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id);
+    const campground = await Campground.findById(req.params.id).populate('reviews');
     res.render('campgrounds/show', { campground });
 }))
 
@@ -94,11 +94,11 @@ app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
     res.redirect('/campgrounds');
 }))
 
-app.post('/camgrounds/:id/reviews', validateReview, catchAsync(async (req, res) => {
+app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
-    const review = new Review(req.bodu.review);
+    const review = new Review(req.body.review);
     campground.reviews.push(review);
-    await eview.save();
+    await review.save();
     await campground.save();
     res.redirect(`/campgrounds/${campground._id}`);
 }))
