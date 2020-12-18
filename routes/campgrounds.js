@@ -26,7 +26,12 @@ router.post('/', isLoggedIn, validateCampground, catchAsync(async (req, res) => 
 }));
 
 router.get('/:id', catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id).populate('reviews').populate('author');
+    const campground = await Campground.findById(req.params.id).populate({
+        path:'reviews',
+        populate: {
+            path:'author'
+        }
+    }).populate('author');
     if (!campground) {
         req.flash('error', 'Cannot find that campground!')
         return res.redirect('/campgrounds');
@@ -51,7 +56,7 @@ router.put('/:id', isLoggedIn, isAuthor, validateCampground, async (req, res) =>
     res.redirect(`/campgrounds/${campground._id}`);
 });
 
-router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const { id } = req.params;
     await Campground.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted campground');
