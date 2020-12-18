@@ -24,6 +24,12 @@ router.post('/register', catchAsync (async (req, res) => {
     
 }));
 
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash('success', 'Goodbye!');
+    res.redirect('/campgrounds');
+});
+
 router.get('/login', (req, res) => {
     res.render('users/login');
 });
