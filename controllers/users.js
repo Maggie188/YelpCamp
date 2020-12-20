@@ -32,7 +32,7 @@ module.exports.login = (req, res) => {
     const redirectUrl = req.session.returnTo || '/campgrounds';
     res.redirect(redirectUrl);
 };
-
+ 
 
 module.exports.logout = (req, res) => {
     req.logout();
