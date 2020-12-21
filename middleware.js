@@ -4,6 +4,7 @@ const Campground = require('./models/campground');
 const Review = require('./models/review');
 
 module.exports.isLoggedIn = (req, res, next) => {
+    console.log( "!req.isAuthenticated" + (!req.isAuthenticated()) );
     if (!req.isAuthenticated()) {
         req.session.returnTo = req.originalUrl;
         console.log("module.exports.isLoggedIn" + req.originalUrl);
