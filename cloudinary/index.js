@@ -1,4 +1,4 @@
-const cloudinary =  require('cloundinary').v2;
+const cloudinary =  require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 cloudinary.config({
@@ -10,8 +10,10 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
     cloudinary,
-    folder: 'YelCamp',
-    allowedFormats: ['jpeg', 'png', 'jpg']
+    params: {
+        folder: 'YelCamp',
+        allowedFormats: ['jpeg', 'png', 'jpg']
+    }
 });
 
 
