@@ -8,7 +8,7 @@ const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 
 const Campground = require('../models/campground');
-const campground = require('../models/campground');
+
 
 
 router.route('/')
