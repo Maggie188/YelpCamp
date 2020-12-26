@@ -20,7 +20,7 @@ const extension = (joi) => ({
         }
     }
 });
-
+ 
 const Joi = BaseJoi.extend(extension)
 
 module.exports.campgroundSchema = Joi.object({
