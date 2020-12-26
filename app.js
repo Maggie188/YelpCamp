@@ -23,6 +23,9 @@ const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 
+// const dbUrl = process.env.DB_URL  (put password in env file)
+
+// 'mongodb://localhost:27017/yelp-camp'
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
